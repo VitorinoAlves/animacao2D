@@ -45,4 +45,10 @@ public class pausa_menu : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
+
+    public void carregaFase()
+    {
+        SceneManager.LoadScene("Principal");
+        Time.timeScale = 1f;
+    }
 }

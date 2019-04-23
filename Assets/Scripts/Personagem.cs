@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Personagem : MonoBehaviour
 {
@@ -12,7 +13,14 @@ public class Personagem : MonoBehaviour
     private bool ataque;
     private bool estaNoChao;
     public float alturaPulo = 250f;
+    [SerializeField] Text textoMensagem;
+    [SerializeField] Image imagem;
+    private string descricao;
+    public Sprite memoria_ram;
+    //public static bool GameIsPaused = false;
+    public GameObject gameOverUI;
     public GameObject menssagem;
+    //public GameObject mensagemTexto;
     // Start is called before the first frame update
     void Start()
     {
@@ -136,12 +144,17 @@ public class Personagem : MonoBehaviour
         if (collision.gameObject.tag == "memoria_ram")
         {
             Destroy(collision.gameObject);
+            descricao = "Você encontrou uma memória RAM, ela é usada para teste de texto dinâmico...";
+            textoMensagem.text = descricao;
+            imagem.sprite = memoria_ram;
             menssagem.SetActive(true);
         }
 
         if (collision.gameObject.tag == "obstaculo")
         {
-            SceneManager.LoadScene("gameOver");
+            //SceneManager.LoadScene("gameOver");
+            gameOverUI.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
